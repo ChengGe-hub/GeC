@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>nameoverflow</title>
+  
+  
+  <!--link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css"-->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css">
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css'><!-- hexo-inject:end -->
+</head>
+
+<body>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="Shell">
+    <aside class='SideBar'>
+    <section class='avatar' style="background-image: url(/assets/header.png)">
+        <div class='av-pic' style="background-image: url(/assets/tree_small.png)">
+        </div>
+    </section>
+    <section class='menu'>
+        <div>nameoverflow</div>
+        
+            <div>What the f__k?</div>
+        
+        <ul>
+          
+            <a href="/" class="Btn">
+              <li>Home</li>
+            </a>  
+          
+            <a href="/archives/" class="Btn">
+              <li>Archive</li>
+            </a>  
+          
+            <a href="/tags/" class="Btn">
+              <li>Tags</li>
+            </a>  
+          
+            <a href="/about/" class="Btn">
+              <li>About</li>
+            </a>  
+          
+        </ul>
+    </section>
+    <section class="media">
+        
+            
+                <a href="https://github.com/nameoverflow">
+                    <img src="/assets/github.svg" />
+                </a>
+            
+        
+            
+                <a href="https://www.facebook.com/profile.php?id=100004252391322">
+                    <img src="/assets/facebook.svg" />
+                </a>
+            
+        
+    </section>
+</aside>
+
+    <div class="container">
+        <div data-pager-shell>
+            <ul class="Index">
+  
+    <header class='PageTitle'>
+        <h1>{ haskell }</h1>
+    </header>
+  
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
+          <a href="/2017/03/03/使用-Parsec-处理左递归/">使用 Parsec 处理左递归</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2017-03-03T12:41:36.000Z" itemprop="datePublished">
+    2017-03-03
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/haskell/">haskell</a> }
+  </li>
+
+  <li class="meta-text">
+  { <a href="/tags/compile/">compile</a> }
+  </li>
+
+  <li class="meta-text">
+  { <a href="/tags/parsec/">parsec</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <p>在给之前写的 Lisp 解释器之前套上表达式语法时，遇到这样几条文法</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtable><mtr><mtd><mrow><mi>E</mi><mi>x</mi><mi>p</mi><mi>r</mi></mrow></mtd><mtd><mrow><mrow></mrow><mo>→</mo><mi>F</mi><mi>a</mi><mi>c</mi><mi>t</mi><mi>o</mi><mi>r</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi></mrow></mtd></mtr><mtr><mtd><mrow></mrow></mtd></mtr><mtr><mtd><mrow><mi>E</mi><mi>x</mi><mi>p</mi><mi>r</mi><mi>s</mi></mrow></mtd><mtd><mrow><mrow></mrow><mo>→</mo><mi>E</mi><mi>x</mi><mi>p</mi><mi>r</mi><mo separator="true">,</mo><mi>E</mi><mi>x</mi><mi>p</mi><mi>r</mi><mi>s</mi></mrow></mtd></mtr><mtr><mtd><mrow></mrow></mtd></mtr><mtr><mtd><mrow><mi>F</mi><mi>a</mi><mi>c</mi><mi>t</mi><mi>o</mi><mi>r</mi></mrow></mtd><mtd><mrow><mrow></mrow><mo>→</mo><mi>I</mi><mi>n</mi><mi>t</mi><mi>e</mi><mi>g</mi><mi>e</mi><mi>r</mi><mi mathvariant="normal">∣</mi><mi>A</mi><mi>p</mi><mi>p</mi><mi>l</mi><mi>y</mi><mi mathvariant="normal">∣</mi><mi>I</mi><mi>d</mi><mi>e</mi><mi>n</mi><mi>t</mi><mi>i</mi><mi>f</mi><mi>y</mi><mi mathvariant="normal">∣</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">∣</mi><mrow><mo>(</mo></mrow><mrow><mi>E</mi><mi>x</mi><mi>p</mi><mi>r</mi></mrow><mrow><mo>)</mo></mrow></mrow></mtd></mtr><mtr><mtd><mrow></mrow></mtd></mtr><mtr><mtd><mrow><mi>I</mi><mi>n</mi><mi>t</mi><mi>e</mi><mi>g</mi><mi>e</mi><mi>r</mi></mrow></mtd><mtd><mrow><mrow></mrow><mo>→</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi></mrow></mtd></mtr><mtr><mtd><mrow></mrow></mtd></mtr><mtr><mtd><mrow><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi></mrow></mtd></mtr><mtr><mtd><mrow></mrow></mtd></mtr><mtr><mtd><mrow><mi>A</mi><mi>p</mi><mi>p</mi><mi>l</mi><mi>y</mi></mrow></mtd><mtd><mrow><mrow></mrow><mo>→</mo><mi>F</mi><mi>a</mi><mi>c</mi><mi>t</mi><mi>o</mi><mi>r</mi><mo>(</mo><mi>E</mi><mi>x</mi><mi>p</mi><mi>r</mi><mi>s</mi><mo>)</mo></mrow></mtd></mtr></mtable></mrow><annotation encoding="application/x-tex">\begin{aligned}
+Expr &amp; \rightarrow Factor ... \\\\
+Exprs &amp; \rightarrow Expr  ,  Exprs\\\\
+ Factor &amp; \rightarrow Integer|Apply|Identify|...|{(}  {Expr} {)} \\\\
+  Integer &amp; \rightarrow... \\\\
+...\\\\
+ Apply &amp; \rightarrow  Factor  (  Exprs  )
+\end{aligned}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:6.849999999999999em;"></span><span class="strut bottom" style="height:13.2em;vertical-align:-6.35em;"></span><span class="base displaystyle textstyle uncramped"><span class="mord"><span class="mtable"><span class="col-align-r"><span class="vlist"><span style="top:-6.009999999999999em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="mord displaystyle textstyle uncramped"><span class="mord mathit" style="margin-right:0.05764em;">E</span><span class="mord mathit">x</span><span class="mord mathit">p</span><span class="mord mathit" style="margin-right:0.02778em;">r</span></span></span><span style="top:-4.809999999999999em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="mord displaystyle textstyle uncramped"></span></span><span style="top:-3.609999999999998em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="mord displaystyle textstyle uncramped"><span class="mord mathit" style="margin-right:0.05764em;">E</span><span class="mord mathit">x</span><span class="mord mathit">p</span><span class="mord mathit" style="margin-right:0.02778em;">r</span><span class="mord mathit">s</span></span></span><span style="top:-2.409999999999998em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="mord displaystyle textstyle uncramped"></span></span><span style="top:-1.209999999999998em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="mord displaystyle textstyle uncramped"><span class="mord mathit" style="margin-right:0.13889em;">F</span><span class="mord mathit">a</span><span class="mord mathit">c</span><span class="mord mathit">t</span><span class="mord mathit">o</span><span class="mord mathit" style="margin-right:0.02778em;">r</span></span></span><span style="top:-0.009999999999997733em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="mord displaystyle textstyle uncramped"></span></span><span style="top:1.1900000000000024em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="mord displaystyle textstyle uncramped"><span class="mord mathit" style="margin-right:0.07847em;">I</span><span class="mord mathit">n</span><span class="mord mathit">t</span><span class="mord mathit">e</span><span class="mord mathit" style="margin-right:0.03588em;">g</span><span class="mord mathit">e</span><span class="mord mathit" style="margin-right:0.02778em;">r</span></span></span><span style="top:2.390000000000002em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="mord displaystyle textstyle uncramped"></span></span><span style="top:3.590000000000001em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="mord displaystyle textstyle uncramped"><span class="mord mathrm">.</span><span class="mord mathrm">.</span><span class="mord mathrm">.</span></span></span><span style="top:4.79em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="mord displaystyle textstyle uncramped"></span></span><span style="top:5.989999999999999em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="mord displaystyle textstyle uncramped"><span class="mord mathit">A</span><span class="mord mathit">p</span><span class="mord mathit">p</span><span class="mord mathit" style="margin-right:0.01968em;">l</span><span class="mord mathit" style="margin-right:0.03588em;">y</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="col-align-l"><span class="vlist"><span style="top:-6.009999999999999em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="mord displaystyle textstyle uncramped"><span class="mord displaystyle textstyle uncramped"></span><span class="mrel">→</span><span class="mord mathit" style="margin-right:0.13889em;">F</span><span class="mord mathit">a</span><span class="mord mathit">c</span><span class="mord mathit">t</span><span class="mord mathit">o</span><span class="mord mathit" style="margin-right:0.02778em;">r</span><span class="mord mathrm">.</span><span class="mord mathrm">.</span><span class="mord mathrm">.</span></span></span><span style="top:-3.6099999999999985em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="mord displaystyle textstyle uncramped"><span class="mord displaystyle textstyle uncramped"></span><span class="mrel">→</span><span class="mord mathit" style="margin-right:0.05764em;">E</span><span class="mord mathit">x</span><span class="mord mathit">p</span><span class="mord mathit" style="margin-right:0.02778em;">r</span><span class="mpunct">,</span><span class="mord mathit" style="margin-right:0.05764em;">E</span><span class="mord mathit">x</span><span class="mord mathit">p</span><span class="mord mathit" style="margin-right:0.02778em;">r</span><span class="mord mathit">s</span></span></span><span style="top:-1.2099999999999989em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="mord displaystyle textstyle uncramped"><span class="mord displaystyle textstyle uncramped"></span><span class="mrel">→</span><span class="mord mathit" style="margin-right:0.07847em;">I</span><span class="mord mathit">n</span><span class="mord mathit">t</span><span class="mord mathit">e</span><span class="mord mathit" style="margin-right:0.03588em;">g</span><span class="mord mathit">e</span><span class="mord mathit" style="margin-right:0.02778em;">r</span><span class="mord mathrm">∣</span><span class="mord mathit">A</span><span class="mord mathit">p</span><span class="mord mathit">p</span><span class="mord mathit" style="margin-right:0.01968em;">l</span><span class="mord mathit" style="margin-right:0.03588em;">y</span><span class="mord mathrm">∣</span><span class="mord mathit" style="margin-right:0.07847em;">I</span><span class="mord mathit">d</span><span class="mord mathit">e</span><span class="mord mathit">n</span><span class="mord mathit">t</span><span class="mord mathit">i</span><span class="mord mathit" style="margin-right:0.10764em;">f</span><span class="mord mathit" style="margin-right:0.03588em;">y</span><span class="mord mathrm">∣</span><span class="mord mathrm">.</span><span class="mord mathrm">.</span><span class="mord mathrm">.</span><span class="mord mathrm">∣</span><span class="mord displaystyle textstyle uncramped"><span class="mopen">(</span></span><span class="mord displaystyle textstyle uncramped"><span class="mord mathit" style="margin-right:0.05764em;">E</span><span class="mord mathit">x</span><span class="mord mathit">p</span><span class="mord mathit" style="margin-right:0.02778em;">r</span></span><span class="mord displaystyle textstyle uncramped"><span class="mclose">)</span></span></span></span><span style="top:1.1900000000000015em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="mord displaystyle textstyle uncramped"><span class="mord displaystyle textstyle uncramped"></span><span class="mrel">→</span><span class="mord mathrm">.</span><span class="mord mathrm">.</span><span class="mord mathrm">.</span></span></span><span style="top:5.989999999999999em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="mord displaystyle textstyle uncramped"><span class="mord displaystyle textstyle uncramped"></span><span class="mrel">→</span><span class="mord mathit" style="margin-right:0.13889em;">F</span><span class="mord mathit">a</span><span class="mord mathit">c</span><span class="mord mathit">t</span><span class="mord mathit">o</span><span class="mord mathit" style="margin-right:0.02778em;">r</span><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.05764em;">E</span><span class="mord mathit">x</span><span class="mord mathit">p</span><span class="mord mathit" style="margin-right:0.02778em;">r</span><span class="mord mathit">s</span><span class="mclose">)</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span></span></span></span>
+<p>显然，non-terminal <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi><mi>p</mi><mi>p</mi><mi>l</mi><mi>y</mi></mrow><annotation encoding="application/x-tex">Apply</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.69444em;"></span><span class="strut bottom" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="base textstyle uncramped"><span class="mord mathit">A</span><span class="mord mathit">p</span><span class="mord mathit">p</span><span class="mord mathit" style="margin-right:0.01968em;">l</span><span class="mord mathit" style="margin-right:0.03588em;">y</span></span></span></span> 的派生最左端会进入  <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>F</mi><mi>a</mi><mi>c</mi><mi>t</mi><mi>o</mi><mi>r</mi></mrow><annotation encoding="application/x-tex">Factor</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.13889em;">F</span><span class="mord mathit">a</span><span class="mord mathit">c</span><span class="mord mathit">t</span><span class="mord mathit">o</span><span class="mord mathit" style="margin-right:0.02778em;">r</span></span></span></span> ，之后又会回到 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi><mi>p</mi><mi>p</mi><mi>l</mi><mi>y</mi></mrow><annotation encoding="application/x-tex">Apply</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.69444em;"></span><span class="strut bottom" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="base textstyle uncramped"><span class="mord mathit">A</span><span class="mord mathit">p</span><span class="mord mathit">p</span><span class="mord mathit" style="margin-right:0.01968em;">l</span><span class="mord mathit" style="margin-right:0.03588em;">y</span></span></span></span> 。教科书式的左递归。</p>
+        
+          <div class="more-link">
+            <a href="/2017/03/03/使用-Parsec-处理左递归/#more">Read On »</a>
+          </div>
+        
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
+          <a href="/2016/08/01/Write-You-a-Scheme/">Write You a Scheme</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2016-08-01T01:33:57.000Z" itemprop="datePublished">
+    2016-08-01
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/haskell/">haskell</a> }
+  </li>
+
+  <li class="meta-text">
+  { <a href="/tags/scheme/">scheme</a> }
+  </li>
+
+  <li class="meta-text">
+  { <a href="/tags/interpreter/">interpreter</a> }
+  </li>
+
+  <li class="meta-text">
+  { <a href="/tags/lambda-calculus/">lambda calculus</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <p>撸了个 <a href="https://github.com/nameoverflow/LittleScheme">Scheme 解释器</a>，也算是拿 Haskell 做过东西了（虽然只是个玩具</p>
+<p>最大的体会就是，既熟悉了 Haskell，也巩固了 Scheme （虽然看过 SICP 但是并不是很明白它的 quosiquote 和 call/cc 之类的鬼东西</p>
+<p>本来是打算自己定义一门语言（像<a href="https://hcyue.me/article/56eb92c6d09a19dd0956c469">这个</a>），但是发现挺麻烦的（大雾），而且我比较关心的也是解释执行的过程，于是还是决定把 Scheme 实现一下。大体上是跟着 <a href="https://en.wikibooks.org/wiki/Write_Yourself_a_Scheme_in_48_Hours">Write Yourself a Scheme in 48 Hours</a> 来的，在它的基础上增加了 Continuation 之类的玩意儿</p>
+        
+          <div class="more-link">
+            <a href="/2016/08/01/Write-You-a-Scheme/#more">Read On »</a>
+          </div>
+        
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
+          <a href="/2016/05/08/Haskeller-的-PureScript-试水/">Haskeller 的 PureScript 试水</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2016-05-07T16:21:33.000Z" itemprop="datePublished">
+    2016-05-08
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/haskell/">haskell</a> }
+  </li>
+
+  <li class="meta-text">
+  { <a href="/tags/purescript/">purescript</a> }
+  </li>
+
+  <li class="meta-text">
+  { <a href="/tags/functional-programming/">functional programming</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <p>– 讲道理虽然自称 Haskeller ，但是其实我根本不会 Haskell（</p>
+<blockquote>
+<p>为什么我要尝试 PureScript ？</p>
+<p>因为它是 Haskell 和 JavaScript 生的娃啊。</p>
+</blockquote>
+<p>Facebook 的 React.js 可以说是给 JavaScript 社区带来了一次 functional programming 的热潮。然而 JavaScript 毕竟不是真正的函数式编程语言——虽然有着 closure 等特性让它可以支持这种独特的范式，但是整体而言它还是基于顺序指令和事件回调的语言。</p>
+<p>PureScript 是一门年轻的语言——现在在 github 上可以查到的最早提交来自于 30 Sep 2013 。它致力于创造一种“类似 haskell 的编程体验”和“生成可读的 JavaScript 代码”。于是，有了它，我们终于可以在项目前端部分中愉快的写“ monoid in the category of endofunctors of X, with product × replaced by composition of endofunctors and unit set by the identity endofunctor ”了（</p>
+        
+          <div class="more-link">
+            <a href="/2016/05/08/Haskeller-的-PureScript-试水/#more">Read On »</a>
+          </div>
+        
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
+          <a href="/2015/11/14/大综合楼-一跃解千愁/">H大综合楼，一跃解千愁</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2015-11-13T18:27:11.000Z" itemprop="datePublished">
+    2015-11-14
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/haskell/">haskell</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><figure class="highlight haskell"><table><tr><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">-- fuck**u.hs</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> Data.List</div><div class="line"></div><div class="line"><span class="keyword">import</span> Data.List.Split</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">-- *大综合楼</span></div><div class="line"></div><div class="line"><span class="comment">-- 一跃解千愁</span></div><div class="line"></div><div class="line"><span class="title">getFloor</span> :: <span class="type">Int</span> -&gt; <span class="type">String</span> -&gt; <span class="type">String</span></div><div class="line"></div><div class="line"><span class="title">getFloor</span> count char =</div><div class="line"></div><div class="line">    <span class="string">"│"</span> ++ fuck char ++ <span class="string">"│"</span></div><div class="line"></div><div class="line">    <span class="keyword">where</span></div><div class="line"></div><div class="line">        fuck = concat.replicate count</div><div class="line"></div><div class="line"><span class="title">build</span> :: <span class="type">Int</span> -&gt; <span class="type">Int</span> -&gt; <span class="type">Int</span> -&gt; <span class="type">String</span></div><div class="line"></div><div class="line"><span class="title">build</span> width height jump =</div><div class="line"></div><div class="line">    concat (top : fuck ++ [ground])</div><div class="line"></div><div class="line">    <span class="keyword">where</span></div><div class="line"></div><div class="line">        top = '┌' : replicate (width * <span class="number">2</span>) '─' ++ <span class="string">"┐\n"</span></div><div class="line"></div><div class="line">        ground = '┴' : replicate (width * <span class="number">2</span>) '─' ++ <span class="string">"┴"</span> ++ replicate <span class="number">10</span> '─'</div><div class="line"></div><div class="line">        fuck = zipWith `++` (concat (replicate height floors)) overflow</div><div class="line"></div><div class="line">                <span class="keyword">where</span></div><div class="line"></div><div class="line">                    floors = map (getFloor width) [<span class="string">"┌┐"</span>, <span class="string">"└┘"</span>]</div><div class="line"></div><div class="line">                    body = [<span class="string">"  ╰O╯\n"</span>, <span class="string">"   /\n"</span>, <span class="string">"  /)\n"</span>]</div><div class="line"></div><div class="line">                    repl' p c = replicate c p</div><div class="line"></div><div class="line">                    overflow = replicate ((height - jump) * <span class="number">2</span> - <span class="number">1</span>) <span class="string">"\n"</span> ++ body ++ replicate (jump * <span class="number">2</span> - <span class="number">1</span>) <span class="string">"\n"</span></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="title">main</span> :: <span class="type">IO</span> ()</div><div class="line"></div><div class="line"><span class="title">main</span> = <span class="keyword">do</span></div><div class="line"></div><div class="line">    putStrLn <span class="string">"综合楼高 综合楼宽 飞翔层数"</span></div><div class="line"></div><div class="line">    params &lt;- getLine</div><div class="line"></div><div class="line">    <span class="keyword">let</span> [width, height, jump] = splitOn <span class="string">" "</span> params <span class="keyword">in</span></div><div class="line"></div><div class="line">        putStrLn $ build (read width :: <span class="type">Int</span>) (read height :: <span class="type">Int</span>) (read jump :: <span class="type">Int</span>)</div><div class="line"></div><div class="line">    putStrLn <span class="string">"*大综合楼\n一跃解千愁"</span></div></pre></td></tr></table></figure>
+<p><img src="https://dn-hcyue.qbox.me/img/QQ%E6%88%AA%E5%9B%BE20151114022522_1.png" alt="hehe"></p>
+
+      
+    </div>
+</article>
+
+    </li>
+  
+</ul>
+
+
+
+            <footer>
+    <div>© 2016 - Hcyue  , CC BY-NC-SA 4.0 </div>
+    <div>
+    Powered by Hexo
+    </div>
+</footer>
+
+        </div>
+    </div>
+</div>
+<script src="/js/pager/dist/singlepager.js"></script>
+<script>
+var sp = new Pager('data-pager-shell')
+
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>nameoverflow</title>
+  
+  
+  <!--link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css"-->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css">
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="Shell">
+    <aside class='SideBar'>
+    <section class='avatar' style="background-image: url(/assets/header.png)">
+        <div class='av-pic' style="background-image: url(/assets/tree_small.png)">
+        </div>
+    </section>
+    <section class='menu'>
+        <div>nameoverflow</div>
+        
+            <div>What the f__k?</div>
+        
+        <ul>
+          
+            <a href="/" class="Btn">
+              <li>Home</li>
+            </a>  
+          
+            <a href="/archives/" class="Btn">
+              <li>Archive</li>
+            </a>  
+          
+            <a href="/tags/" class="Btn">
+              <li>Tags</li>
+            </a>  
+          
+            <a href="/about/" class="Btn">
+              <li>About</li>
+            </a>  
+          
+        </ul>
+    </section>
+    <section class="media">
+        
+            
+                <a href="https://github.com/nameoverflow">
+                    <img src="/assets/github.svg" />
+                </a>
+            
+        
+            
+                <a href="https://www.facebook.com/profile.php?id=100004252391322">
+                    <img src="/assets/facebook.svg" />
+                </a>
+            
+        
+    </section>
+</aside>
+
+    <div class="container">
+        <div data-pager-shell>
+            <ul class="Index">
+  
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
+          <a href="/2015/08/26/Fedora-22-新内核下-BCMA-43142网卡无WiFi的解决/">Fedora 22 新内核下 BCMA 43142网卡无WiFi的解决</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2015-08-26T01:36:19.000Z" itemprop="datePublished">
+    2015-08-26
+  </time>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>先说解决办法：</p>
+<pre><code class="bash">sudo dnf install akmod-wl
+</code></pre>
+<p>Fedora的更新一向很快，带来的问题之一就是兼容性。</p>
+<p>比如4.1.5的kernel下，并没有兼容bcma43142的内置driver。</p>
+<p>第一反应是去下载内核编译，然并卵。</p>
+<p>编译之后可以搜寻wifi，但是不能连接wpa2加密的wifi。</p>
+<p>最后灵机一动想到了那个闭源驱动的rpm源，安装之，解决。</p>
+<p>睡觉。</p>
+
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
+          <a href="/2015/08/03/撸了个node的微型web-server/">撸了个node的微型web server</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2015-08-02T17:16:00.000Z" itemprop="datePublished">
+    2015-08-03
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/nodejs/">nodejs</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><a href="https://github.com/NameIsUseless/yue" target="_blank" rel="external">Github 链接在此</a></p>
+<p>（明明是全是coffee文件强行叫.js，凑表碾）</p>
+<hr>
+<blockquote>
+<p>yue.js is a tiny web server based on Node.js and CoffeeScript, supporting <code>route</code>, <code>session</code>, <code>database</code> (based on mongodb and is not completed yet..) and <code>static file</code>.</p>
+</blockquote>
+<p>已经实现的功能有：路由(<code>Router</code>)，静态文件(<code>Static File</code>)， Session相关。</p>
+<p>Router用了一种简单粗暴的实现，即把输入的uri解析之后拼成正则保存下来，接受请求的时候一个个正则去match。</p>
+<p>主要的想法是做成松散的结构，支持各种中间件，虽然现有的核心功能都是写的比较死的，但是后续的扩展方式应该是各种中间件。</p>
+<p>其中把对request和response的相关操作封装在了一个connection对象里，各种中间件可以给它添加属性方法之类。</p>
+<p>这东西其实是为了我的新版博客写的，然后新版博客是想做成spa，于是还有一堆前端的东西要写=。=</p>
+<p>（然而说好的函数式信徒结果写成了依赖副作用的架构）</p>
+<p>（以后再重构吧）</p>
+<p>（以后===说不定就忘记了）</p>
+
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
+          <a href="/2015/05/17/记一次离散作业/">记一次离散作业</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2015-05-17T15:51:19.000Z" itemprop="datePublished">
+    2015-05-17
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/math/">math</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <p>题目是：用C语言写出一个通用算法，用该算法求出下面哈斯图表示的任务被执行的次序。</p>
+<p><img src="https://dn-hcyue.qbox.me/img/has.png" alt="哈斯图"></p>
+<p>然而是一道很简单的题。</p>
+<p>（然而我作死的写了两百多行c）</p>
+<p>（然而果然用c写东西就像拿小刀砍树能累死人）</p>
+        
+          <div class="more-link">
+            <a href="/2015/05/17/记一次离散作业/#more">Read On »</a>
+          </div>
+        
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
+          <a href="/2015/05/07/许久没发博客/">许久没发博客</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2015-05-06T17:40:01.000Z" itemprop="datePublished">
+    2015-05-07
+  </time>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>这段时间为前一阵的天真付出了代价，各种ddl轮番上阵简直醉。</p>
+<p>最近在看SICP和CSAPP，果然应了贪多嚼不烂这句话。买了很多书确并不能静下心来读。SICP构建树结构那一章看了两个星期仍然没有看完= =</p>
+<p>一直想写的web游戏引擎，也因为时间的关系一直坑在那里，徘徊在绘制直线和显示图像的边缘。</p>
+<p>倒是学了学coffeescript，感觉写起来和python一样如沐清风233</p>
+<p>（然而只是为了更新博客而更新博客么）</p>
+
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
+          <a href="/2015/03/08/Generating-Identicons-by-Python/">Generating Identicons by Python</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2015-03-07T20:53:35.000Z" itemprop="datePublished">
+    2015-03-08
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/python/">python</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <p>If a github’s user has not upload an avatar, github will use gvatar or generate an image basing on the email(gvatar also offers this service).This kind of image called identicon.</p>
+<p>This code does the similar thing in a simple way,using the md5 of a string to generate an identicon.</p>
+<p>#英语渣表示写这段话好吃力啊= =</p>
+<p>example:</p>
+<p>input: hello world</p>
+<p>generated:</p>
+<p><img src="https://dn-hcyue.qbox.me/img/bbe01eeed093cb22bb8f5acdc3.png" alt=""></p>
+        
+          <div class="more-link">
+            <a href="/2015/03/08/Generating-Identicons-by-Python/#more">Read On »</a>
+          </div>
+        
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
+          <a href="/2015/03/06/Is-object-oriented-programming-both-anti-modular-and-anti-parallel-by-its-very-nature-Why-or-why-not/">Is object-oriented programming both anti-modular and anti-parallel by its very nature? Why or why not?</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2015-03-06T15:00:45.000Z" itemprop="datePublished">
+    2015-03-06
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/object-oriented-programming/">object-oriented programming</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>(ref: <a href="http://www.quora.com/Is-object-oriented-programming-both-anti-modular-and-anti-parallel-by-its-very-nature-Why-or-why-not" target="_blank" rel="external">http://www.quora.com/Is-object-oriented-programming-both-anti-modular-and-anti-parallel-by-its-very-nature-Why-or-why-not</a>)</p>
+<blockquote>
+<p>According to a blog post from Professor Robert Harper, the CMU Computer Science department is removing the required study of O-O from the Freshman curriculum for this reason. But why?</p>
+</blockquote>
+<p>Jon Moter’s answer:</p>
+<p>While I can’t climb into Professor Harper’s brain, I figure what he’s pointing to is that OOP is a programming paradigm that’s based on state changes. You create a User object, you call methods on it, the state of the user changes, etc.</p>
+<p>In contrast, (pure) functional programming has no side-effects, so calling a function doesn’t cause any state change.  It just returns information based on the parameters passed in.</p>
+<p>So if you assume the world is heading for a direction where computer code is written to run on massively parallel distributed systems, it’s far easier to design code written in a functional manner, since there is no shared state to manage.  If you have hundreds or thousands of processors running on GPUs or in hardware clusters, you can distribute computations across all of them, leveraging a programming paradigm that’s better suited for that.</p>
+<p>I don’t think procedural and OO programming is going to magically go away any time soon, but it’s interesting that he’s starting his students thinking in terms of functional and imperative programming, rather than procedural or OO.</p>
+
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
+          <a href="/2015/03/06/用上了instantclick/">用上了instantclick</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2015-03-05T17:26:10.000Z" itemprop="datePublished">
+    2015-03-06
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/website/">website</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>一开始是看到谭总博客里面那纵享丝滑的像是ajax的加载</p>
+<p>（还有上面那个神奇的进度条）</p>
+<p>然后就发现了这个神奇的instantclick</p>
+<p>利用pjax，在鼠标放到a上的时候开始加载页面，当你点下鼠标的时候页面已经加载完毕了，这时只要替换页面的title和body，纵享丝滑~</p>
+<p>但是评论框比较蛋疼，因为是内嵌的script，在每次加载页面之后它并没有重置重新加载</p>
+<p>解决的办法是用上instantclick提供的change事件</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">data-no-instant</span>&gt;</span><span class="javascript"></span></div><div class="line"><span class="keyword">var</span> disqus_shortname = <span class="string">'hcyue'</span>;</div><div class="line">InstantClick.on(<span class="string">'change'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">isInitialLoad</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (!isInitialLoad) &#123;</div><div class="line">        <span class="comment">// update Disqus thread</span></div><div class="line">        <span class="keyword">if</span> (<span class="built_in">document</span>.querySelector(<span class="string">"#disqus_thread"</span>)) &#123;</div><div class="line">            <span class="keyword">if</span> (<span class="keyword">typeof</span> DISQUS === <span class="string">'undefined'</span>) &#123;</div><div class="line">                <span class="keyword">var</span> dsq = <span class="built_in">document</span>.createElement(<span class="string">'script'</span>); dsq.type = <span class="string">'text/javascript'</span>; dsq.async = <span class="literal">true</span>;</div><div class="line">                dsq.src = <span class="string">'//'</span> + disqus_shortname + <span class="string">'.disqus.com/embed.js'</span>;</div><div class="line">                (<span class="built_in">document</span>.getElementsByTagName(<span class="string">'head'</span>)[<span class="number">0</span>] || <span class="built_in">document</span>.getElementsByTagName(<span class="string">'body'</span>)[<span class="number">0</span>]).appendChild(dsq);</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                DISQUS.reset(&#123;</div><div class="line">                  <span class="attr">reload</span>: <span class="literal">true</span>,</div><div class="line">                  <span class="attr">config</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">                    <span class="keyword">this</span>.page.identifier = <span class="built_in">window</span>.location.pathname;</div><div class="line">                    <span class="keyword">this</span>.page.url = <span class="built_in">window</span>.location.toString();</div><div class="line">                  &#125;</div><div class="line">                &#125;);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line">InstantClick.init();</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>判断在内容变化时页面存不存在评论框，决定是否加载远程脚本。</p>
+<p>改天研究一下这个instantclick，虽然纵享丝滑但是似乎毛病略多</p>
+
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
+          <a href="/2015/03/06/hexo蛋疼升级/">hexo蛋疼升级</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2015-03-05T17:16:53.000Z" itemprop="datePublished">
+    2015-03-06
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/hexo/">hexo</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>蛋疼的升级。。</p>
+<p>一开始是莫名的插件错误，让我好生看源码，看着看着发现不对啊这为什么报错只能是api问题啊</p>
+<p>然后到hexo.io一看，果然。。升级了3.0，还是”the API has breaking changes”的节奏</p>
+<p>按照文档里写的去掉版本号，<code>npm install hexo-cli -g</code> ，<code>npm install hexo --save</code> ，然后发现folder又要重新出屎化，出屎化完了还要重新安装全套插件，还要重新设置环境变量。。。</p>
+<p>我说你一个本地跑的静态博客弄这么多api变化干嘛呢。。。</p>
+
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
+          <a href="/2015/03/04/Rylynn-Andy-Mckee/">Rylynn-Andy Mckee</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2015-03-04T15:50:09.000Z" itemprop="datePublished">
+    2015-03-04
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/guitar/">guitar</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>供在这里，时时观摩学习。</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Zj_MhQ_x8Ao" frameborder="0" allowfullscreen style="
+    max-width: 100%;"></iframe>
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
+          <a href="/2015/03/03/starsector/">starsector</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2015-03-02T18:23:45.000Z" itemprop="datePublished">
+    2015-03-03
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/game/">game</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>starsector是款好游戏。</p>
+<p>但是是用java开发的，可惜了。</p>
+
+      
+    </div>
+</article>
+
+    </li>
+  
+</ul>
+
+  <section id="nav-wrapper">
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/page/3/">« prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/">next »</a>
+    </nav>
+  </section>
+
+
+            <footer>
+    <div>© 2016 - Hcyue  , CC BY-NC-SA 4.0 </div>
+    <div>
+    Powered by Hexo
+    </div>
+</footer>
+
+        </div>
+    </div>
+</div>
+<script src="/js/pager/dist/singlepager.js"></script>
+<script>
+var sp = new Pager('data-pager-shell')
+
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>
